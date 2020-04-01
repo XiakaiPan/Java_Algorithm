@@ -1,0 +1,774 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Spotbugs:     PASSED
+PMD:          PASSED
+Checkstyle:   FAILED (0 errors, 1 warning)
+
+Correctness:  11/28 tests passed
+Memory:       No tests available for autograding.
+Timing:       No tests available for autograding.
+
+Aggregate score: 45.36%
+[ Compilation: 5%, API: 5%, Style: 0%, Correctness: 90% ]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+1.4K Feb  1 05:59 Birthday.java
+1014 Feb  1 05:59 DiscreteDistribution.java
+1.9K Feb  1 05:59 Minesweeper.java
+ 976 Feb  1 05:59 ThueMorse.java
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac DiscreteDistribution.java
+*-----------------------------------------------------------
+
+% javac ThueMorse.java
+*-----------------------------------------------------------
+
+% javac Birthday.java
+*-----------------------------------------------------------
+
+% javac Minesweeper.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+DiscreteDistribution:
+
+ThueMorse:
+
+Birthday:
+
+Minesweeper:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% spotbugs *.class
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] Minesweeper.java:33:25: Using a quadruple nested loop suggests poor design in this program. [NestedForDepth]
+Checkstyle ends with 0 errors and 1 warning.
+
+% custom checkstyle checks for DiscreteDistribution.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for ThueMorse.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for Birthday.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for Minesweeper.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of DiscreteDistribution
+*-----------------------------------------------------------
+Running 6 total tests.
+
+Test 1: check output format
+  % java DiscreteDistribution 9 1 1 1 1 1 1
+  4 5 4 4 3 3 0 1 5 
+
+  % java DiscreteDistribution 8 10 20 30 40 50 60 50 40 30 20 10
+  4 10 4 8 6 7 2 4 
+
+  % java DiscreteDistribution 7 10 10 10 10 10 50
+  4 3 0 5 5 5 5 
+
+  % java DiscreteDistribution 6 50 50
+  1 0 0 1 1 1 
+
+  % java DiscreteDistribution 5 80 20
+  0 0 0 1 0 
+
+  % java DiscreteDistribution 4 301 176 125 97 79 67 58 51 46
+  3 0 7 0 
+
+  % java DiscreteDistribution 3 19 49 60 47 32 18 3 3 1
+  1 3 2 
+
+  % java DiscreteDistribution 2 9316001 10274874 10109130 10045436 9850199 6704495 5886889
+  2 2 
+
+  % java DiscreteDistribution 1 8167 1492 2782 4253 12702 2228 2015 6094 6966 153 772     ...
+  0 
+
+==> passed
+
+Test 2: check that output contains correct number of integers
+  * fair die                           [ repeated 1000 times ]
+  * sum of two dice                    [ repeated 1000 times ]
+  * loaded die                         [ repeated 1000 times ]
+  * fair coin                          [ repeated 1000 times ]
+  * 80/20 biased coin                  [ repeated 1000 times ]
+  * 9 digits in Benford's law          [ repeated 1000 times ]
+  * goals in FIFA World Cup 1990-2002  [ repeated 1000 times ]
+  * U.S. birthdays by day of week      [ repeated 1000 times ]
+  * 26 letters in English language     [ repeated 1000 times ]
+==> passed
+
+Test 3: check that output is a sequence of integers between 1 and n
+  * fair die                           [ repeated 1000 times ]
+    - command-line arguments = "1000 1 1 1 1 1 1"
+    - the result should be a sequence of integers between 1 and 6
+    - student integer 1 = 0
+
+  * sum of two dice                    [ repeated 1000 times ]
+    - command-line arguments = "1000 10 20 30 40 50 60 50 40 30 20 10"
+    - the result should be a sequence of integers between 1 and 11
+    - student integer 22 = 0
+
+  * loaded die                         [ repeated 1000 times ]
+    - command-line arguments = "1000 10 10 10 10 10 50"
+    - the result should be a sequence of integers between 1 and 6
+    - student integer 18 = 0
+
+  * fair coin                          [ repeated 1000 times ]
+    - command-line arguments = "1000 50 50"
+    - the result should be a sequence of integers between 1 and 2
+    - student integer 0 = 0
+
+  * 80/20 biased coin                  [ repeated 1000 times ]
+    - command-line arguments = "1000 80 20"
+    - the result should be a sequence of integers between 1 and 2
+    - student integer 0 = 0
+
+  * 9 digits in Benford's law          [ repeated 1000 times ]
+    - command-line arguments = "1000 301 176 125 97 79 67 58 51 46"
+    - the result should be a sequence of integers between 1 and 9
+    - student integer 11 = 0
+
+  * goals in FIFA World Cup 1990-2002  [ repeated 1000 times ]
+    - command-line arguments = "1000 19 49 60 47 32 18 3 3 1"
+    - the result should be a sequence of integers between 1 and 9
+    - student integer 12 = 0
+
+  * U.S. birthdays by day of week      [ repeated 1000 times ]
+    - command-line arguments = "1000 9316001 10274874 10109130 10045436 9850199 6704495     ..."
+    - the result should be a sequence of integers between 1 and 7
+    - student integer 3 = 0
+
+  * 26 letters in English language     [ repeated 1000 times ]
+    - command-line arguments = "1000 8167 1492 2782 4253 12702 2228 2015 6094 6966 153 772  ..."
+    - the result should be a sequence of integers between 1 and 26
+    - student integer 1 = 0
+
+==> FAILED
+
+Test 4: check that program produces different results when run twice
+  * fair die                           [ repeated 10 times ]
+  * sum of two dice                    [ repeated 12 times ]
+  * loaded die                         [ repeated 10 times ]
+  * fair coin                          [ repeated 20 times ]
+  * 80/20 biased coin                  [ repeated 30 times ]
+  * 9 digits in Benford's law          [ repeated 10 times ]
+  * goals in FIFA World Cup 1990-2002  [ repeated 10 times ]
+  * U.S. birthdays by day of week      [ repeated 14 times ]
+  * 26 letters in English language     [ repeated 10 times ]
+==> passed
+
+Test 5: check randomness
+  * fair die                           [ repeated 100000 times ]
+    - command-line arguments = "100000 1 1 1 1 1 1"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1     16799   16666.7        265.71
+                2     16690   16666.7         46.70
+                3     16519   16666.7       -294.02
+                4     16682   16666.7         30.68
+                5     16693   16666.7         52.71
+                6         0   16666.7          0.00
+        -------------------------------------------
+                      83383  100000.0        101.78
+    
+    G-statistic = 101.78 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * sum of two dice                    [ repeated 100000 times ]
+    - command-line arguments = "100000 10 20 30 40 50 60 50 40 30 20 10"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1      5652    2777.8       8029.89
+                2      8273    5555.6       6588.60
+                3     11088    8333.3       6333.46
+                4     13770   11111.1       5908.62
+                5     16566   13888.9       5839.95
+                6     13837   16666.7      -5149.15
+                7     11207   13888.9      -4808.94
+                8      8400   11111.1      -4699.19
+                9      5583    8333.3      -4472.40
+               10      2846    5555.6      -3807.29
+               11         0    2777.8          0.00
+        -------------------------------------------
+                      97222  100000.0       9763.55
+    
+    G-statistic = 9763.55 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * loaded die                         [ repeated 100000 times ]
+    - command-line arguments = "100000 10 10 10 10 10 50"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1     10106   10000.0        213.12
+                2     10039   10000.0         78.15
+                3     10068   10000.0        136.46
+                4      9961   10000.0        -77.85
+                5     49966   10000.0     160766.37
+                6         0   50000.0          0.00
+        -------------------------------------------
+                      90140  100000.0     161116.26
+    
+    G-statistic = 161116.26 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * fair coin                          [ repeated 100000 times ]
+    - command-line arguments = "100000 50 50"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1     50025   50000.0         50.01
+                2         0   50000.0          0.00
+        -------------------------------------------
+                      50025  100000.0         50.01
+    
+    G-statistic = 50.01 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * 80/20 biased coin                  [ repeated 100000 times ]
+    - command-line arguments = "100000 80 20"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1     20155   80000.0     -55570.33
+                2         0   20000.0          0.00
+        -------------------------------------------
+                      20155  100000.0     -55570.33
+    
+    G-statistic = -55570.33 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * 9 digits in Benford's law          [ repeated 100000 times ]
+    - command-line arguments = "100000 301 176 125 97 79 67 58 51 46"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1     17813   30100.0     -18689.28
+                2     12439   17600.0      -8634.21
+                3      9671   12500.0      -4963.10
+                4      7864    9700.0      -3300.21
+                5      6708    7900.0      -2194.35
+                6      5777    6700.0      -1712.57
+                7      5071    5800.0      -1362.27
+                8      4613    5100.0       -925.94
+                9         0    4600.0          0.00
+        -------------------------------------------
+                      69956  100000.0     -41781.93
+    
+    G-statistic = -41781.93 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * 26 letters in English language     [ repeated 100000 times ]
+    - command-line arguments = "100000 8167 1492 2782 4253 12702 2228 2015 6094 6966 153    ..."
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1      1457    8167.1      -5022.96
+                2      2751    1492.0       3366.33
+                3      4306    2782.0       3761.97
+                4     12551    4253.0      27164.52
+                5      2286   12702.1      -7840.82
+                6      2034    2228.0       -370.64
+                7      6253    2015.0      14162.20
+                8      6980    6094.1       1894.85
+                9       152    6966.1      -1162.78
+               10       789     153.0       2588.42
+               11      3947     772.0      12880.77
+               12      2405    4025.0      -2477.08
+               13      6650    2406.0      13521.33
+               14      7516    6749.1       1617.89
+               15      2053    7507.1      -5323.61
+               16        78    1929.0       -500.46
+               17      6063      95.0      50396.54
+               18      6367    5987.1        783.50
+               19      9022    6327.1       6402.55
+               20      2724    9056.1      -6544.88
+               21      1010    2758.0      -2029.22
+               22      2363     978.0       4169.12
+               23       129    2360.0       -749.91
+               24      1999     150.0      10353.85
+               25        74    1974.0       -486.00
+               26         0      74.0          0.00
+        -------------------------------------------
+                      91959  100000.0     120555.50
+    
+    G-statistic = 120555.50 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * goals in FIFA World Cup 1990-2002  [ repeated 100000 times ]
+    - command-line arguments = "100000 19 49 60 47 32 18 3 3 1"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1     20893    8189.7      39134.36
+                2     26053   21120.7      10936.00
+                3     20173   25862.1     -10023.25
+                4     13894   20258.6     -10479.50
+                5      7775   13793.1      -8914.12
+                6      1314    7758.6      -4666.61
+                7      1277    1293.1        -32.01
+                8       435    1293.1       -947.83
+                9         0     431.0          0.00
+        -------------------------------------------
+                      91814  100000.0      15007.04
+    
+    G-statistic = 15007.04 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * U.S. birthdays by day of week      [ repeated 100000 times ]
+    - command-line arguments = "100000 9316001 10274874 10109130 10045436 9850199 6704495   ..."
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1     16657   14980.6       3533.72
+                2     16341   16522.5       -361.07
+                3     15943   16256.0       -619.96
+                4     15673   16153.6       -946.74
+                5     10789   15839.6      -8285.70
+                6      9421   10781.2      -2541.05
+                7         0    9466.4          0.00
+        -------------------------------------------
+                      84824  100000.0      -9220.79
+    
+    G-statistic = -9220.79 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+==> FAILED
+
+Test 6: check randomness when n = 1
+  * a_1 = 1                            [ repeated 100000 times ]
+    - command-line arguments = "100000 1"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1         0  100000.0          0.00
+        -------------------------------------------
+                          0  100000.0          0.00
+    
+    G-statistic = 0.00 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * a_1 = 100                          [ repeated 100000 times ]
+    - command-line arguments = "100000 100"
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                1         0  100000.0          0.00
+        -------------------------------------------
+                          0  100000.0          0.00
+    
+    G-statistic = 0.00 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+==> FAILED
+
+
+DiscreteDistribution Total: 3/6 tests passed!
+
+
+================================================================
+Testing correctness of ThueMorse
+*-----------------------------------------------------------
+Running 5 total tests.
+
+Test 1: check output format
+  % java ThueMorse 2
+  +  -  
+  -  +  
+
+  % java ThueMorse 4
+  +  -  -  +  
+  -  +  +  -  
+  -  +  +  -  
+  +  -  -  +  
+
+  % java ThueMorse 8
+  +  -  -  +  -  +  +  -  
+  -  +  +  -  +  -  -  +  
+  -  +  +  -  +  -  -  +  
+  +  -  -  +  -  +  +  -  
+  -  +  +  -  +  -  -  +  
+  +  -  -  +  -  +  +  -  
+  +  -  -  +  -  +  +  -  
+  -  +  +  -  +  -  -  +  
+
+  % java ThueMorse 16
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  -  +  +  -  +  -  -  +  +  -  -  +  -  +  +  -  
+  +  -  -  +  -  +  +  -  -  +  +  -  +  -  -  +  
+
+==> passed
+
+Test 2: check correctness when n is a power of 2
+  * java ThueMorse 2
+  * java ThueMorse 4
+  * java ThueMorse 8
+  * java ThueMorse 16
+  * java ThueMorse 32
+  * java ThueMorse 64
+==> passed
+
+Test 3: check correctness when n is not a power of 2
+  * java ThueMorse 3
+  * java ThueMorse 5
+  * java ThueMorse 6
+  * java ThueMorse 7
+  * java ThueMorse 9
+  * java ThueMorse 10
+  * java ThueMorse 11
+  * java ThueMorse 12
+  * java ThueMorse 13
+  * java ThueMorse 14
+  * java ThueMorse 15
+==> passed
+
+Test 4: check corner case
+  * java ThueMorse 1
+==> passed
+
+Test 5: check random values of n
+  * 100 random values of n in [16, 32)
+  * 100 random values of n in [32, 64)
+  * 50 random values of n in [64, 128)
+  * 25 random values of n in [128, 256)
+==> passed
+
+
+ThueMorse Total: 5/5 tests passed!
+
+
+================================================================
+Testing correctness of Birthday
+*-----------------------------------------------------------
+Running 6 total tests.
+
+Test 1: check output format
+  % java Birthday 365 100000
+  1	0	0.0
+  2	252	0.00252
+  3	583	0.00835
+  4	807	0.01642
+  5	1080	0.02722
+  6	1323	0.04045
+  7	1560	0.05605
+  8	1823	0.07428
+  9	2095	0.09523
+  10	2246	0.11769
+  11	2456	0.14225
+  12	2521	0.16746
+  13	2800	0.19546
+  14	2968	0.22514
+  15	2909	0.25423
+  16	3019	0.28442
+  17	3143	0.31585
+  18	3163	0.34748
+  19	3119	0.37867
+  20	3181	0.41048
+  21	3280	0.44328
+  22	3197	0.47525
+  23	3104	0.50629
+
+  % java Birthday 31 100000
+  1	0	0.0
+  2	3208	0.03208
+  3	6201	0.09409
+  4	8828	0.18237
+  5	10655	0.28892
+  6	11395	0.40287
+  7	11593	0.5188
+
+==> passed
+
+Test 2: check values in first column
+  * java Birthday 365 10000
+  * java Birthday 31 10000
+  * java Birthday 1 1000
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+
+    Birthday.main(Birthday.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    UtilCOS.execute(UtilCOS.java:76)
+    TestBirthday.getStudentOutput(TestBirthday.java:52)
+    TestBirthday.checkValues(TestBirthday.java:64)
+    TestBirthday.test2(TestBirthday.java:408)
+    TestBirthday.main(TestBirthday.java:459)
+
+  * java Birthday 2 1000
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+
+    Birthday.main(Birthday.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    UtilCOS.execute(UtilCOS.java:76)
+    TestBirthday.getStudentOutput(TestBirthday.java:52)
+    TestBirthday.checkValues(TestBirthday.java:64)
+    TestBirthday.test2(TestBirthday.java:409)
+    TestBirthday.main(TestBirthday.java:459)
+
+==> FAILED
+
+Test 3: check that cumulative percentages are monotone nondecreasing
+        and table stops when percentage reaches (or exceeds) 50%
+  * java Birthday 365 10000 [ repeated 10 times ]
+  * java Birthday 31 10000 [ repeated 10 times ]
+  * java Birthday 10 5 [ repeated 1000 times ]
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Birthday.main(Birthday.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    UtilCOS.execute(UtilCOS.java:76)
+    TestBirthday.getStudentOutput(TestBirthday.java:52)
+    TestBirthday.isCorrectCumulativePercentages(TestBirthday.java:178)
+    TestBirthday.checkCumulativePercentages(TestBirthday.java:167)
+    TestBirthday.test3(TestBirthday.java:420)
+    TestBirthday.main(TestBirthday.java:460)
+
+    - failed on trial 200 of 1000
+
+  * java Birthday 4 4 [ repeated 1000 times ]
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4
+
+    Birthday.main(Birthday.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    UtilCOS.execute(UtilCOS.java:76)
+    TestBirthday.getStudentOutput(TestBirthday.java:52)
+    TestBirthday.isCorrectCumulativePercentages(TestBirthday.java:178)
+    TestBirthday.checkCumulativePercentages(TestBirthday.java:167)
+    TestBirthday.test3(TestBirthday.java:421)
+    TestBirthday.main(TestBirthday.java:460)
+
+    - failed on trial 3 of 1000
+
+  * java Birthday 2 2 [ repeated 1000 times ]
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+
+    Birthday.main(Birthday.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    UtilCOS.execute(UtilCOS.java:76)
+    TestBirthday.getStudentOutput(TestBirthday.java:52)
+    TestBirthday.isCorrectCumulativePercentages(TestBirthday.java:178)
+    TestBirthday.checkCumulativePercentages(TestBirthday.java:167)
+    TestBirthday.test3(TestBirthday.java:422)
+    TestBirthday.main(TestBirthday.java:460)
+
+    - failed on trial 1 of 1000
+
+==> FAILED
+
+Test 4: check that cumulative percentages are consistent with frequencies
+  * java Birthday 365 10000
+  * java Birthday 31 10000
+==> passed
+
+Test 5: check that each execution of program outputs a different table
+  * java Birthday 365 10000 [ repeated twice ]
+  * java Birthday 31 10000 [ repeated twice ]
+==> passed
+
+Test 6: check randomness of birthdays
+  * java Birthday 365 1000000
+  * java Birthday 31 1000000
+  * java Birthday 7 1000000
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 7 out of bounds for length 7
+
+    Birthday.main(Birthday.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    UtilCOS.execute(UtilCOS.java:76)
+    TestBirthday.getStudentOutput(TestBirthday.java:52)
+    TestBirthday.checkRandomness(TestBirthday.java:293)
+    TestBirthday.test6(TestBirthday.java:447)
+    TestBirthday.main(TestBirthday.java:463)
+
+  * java Birthday 5 1000000
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+    Birthday.main(Birthday.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    UtilCOS.execute(UtilCOS.java:76)
+    TestBirthday.getStudentOutput(TestBirthday.java:52)
+    TestBirthday.checkRandomness(TestBirthday.java:293)
+    TestBirthday.test6(TestBirthday.java:448)
+    TestBirthday.main(TestBirthday.java:463)
+
+==> FAILED
+
+
+Birthday Total: 3/6 tests passed!
+
+
+================================================================
+Testing correctness of Minesweeper
+*-----------------------------------------------------------
+Running 11 total tests.
+
+Test 1: check output format
+  % java Minesweeper 9 9 10
+  0 0 0 0 0 0 0 0 0 
+  0 * 1 0 0 0 0 * 1 
+  0 1 1 0 0 0 0 1 * 
+  * 1 0 0 0 * 1 0 1 
+  1 * 1 0 * 2 1 0 0 
+  0 * * 1 1 1 0 0 0 
+  0 1 2 1 0 0 0 0 0 
+  0 0 0 0 0 0 0 0 0 
+  0 0 0 * 1 0 0 0 0 
+
+  - line 0 of output in student solution: 
+    "0 0 0 0 0 0 0 0 0 "
+  - the format of line 0 should be:
+    a sequence of integers or asterisks, with two spaces between each element
+
+  % java Minesweeper 16 16 40
+  * 1 0 0 0 0 * 1 0 0 0 0 0 0 0 0 
+  * 2 0 0 * 1 1 1 0 * 1 0 0 * 1 * 
+  1 1 0 0 1 1 * 1 0 1 1 0 * 2 1 1 
+  * 1 0 0 0 0 1 1 * 1 0 0 1 1 0 0 
+  1 1 0 * 1 0 0 0 1 1 * 1 0 0 0 0 
+  0 0 * 2 1 0 0 0 0 0 1 1 0 0 0 0 
+  0 0 1 1 * 1 0 0 0 0 * * 1 0 0 0 
+  0 * 1 0 1 1 0 0 0 0 1 2 1 * * * 
+  * 2 * 1 0 0 0 0 0 0 0 0 0 1 2 2 
+  1 * 2 1 0 0 0 * 1 0 * 1 0 0 0 0 
+  0 * 2 0 0 0 0 1 1 0 1 1 0 0 0 0 
+  0 1 * 1 0 * 1 0 0 0 0 0 0 0 0 * 
+  0 0 * 2 0 1 1 0 0 0 0 0 * 1 0 1 
+  0 0 1 1 0 0 0 0 * 1 * 1 1 1 0 0 
+  * 1 0 0 0 0 0 * * 2 1 * 1 0 0 0 
+  1 * 1 0 0 0 0 1 2 1 0 1 1 * 1 0 
+
+  - line 0 of output in student solution: 
+    "* 1 0 0 0 0 * 1 0 0 0 0 0 0 0 0 "
+  - the format of line 0 should be:
+    a sequence of integers or asterisks, with two spaces between each element
+
+  % java Minesweeper 16 30 82
+  * * * 1 0 * 1 0 0 0 0 * 1 0 * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  1 * * * 1 1 * 1 0 0 * 2 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  * * * 3 1 0 1 * * * * 2 0 * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  * 3 2 1 0 0 0 1 2 2 2 1 0 1 1 * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  1 1 * 1 0 0 0 0 * * 1 * * 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  * 1 1 * 1 0 0 0 * 3 1 1 2 * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  * 2 0 1 1 * 1 0 * * 1 * * 2 * * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  1 1 0 0 * 2 1 0 1 2 1 * * 2 1 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  0 * 1 * 2 1 0 * * * 1 1 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  0 1 * 2 1 0 * * * * 2 0 0 0 * * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  * 1 1 * * 1 1 * 3 2 1 0 0 0 * 3 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  * 2 0 1 2 1 * 2 1 * 1 * 1 0 1 * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  1 1 * * 1 * 2 1 0 1 * 2 1 0 * 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  0 * * 3 1 1 1 0 * 1 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  * * 3 1 0 0 0 * * * 1 * * 1 * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  1 2 * 1 0 * * 2 2 2 1 1 2 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+
+  - line 0 of output in student solution: 
+    "* * * 1 0 * 1 0 0 0 0 * 1 0 * 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+  - the format of line 0 should be:
+    a sequence of integers or asterisks, with two spaces between each element
+
+  % java Minesweeper 4 8 0
+  0 0 0 0 0 0 0 0 
+  0 0 0 0 0 0 0 0 
+  0 0 0 0 0 0 0 0 
+  0 0 0 0 0 0 0 0 
+
+  - line 0 of output in student solution: 
+    "0 0 0 0 0 0 0 0 "
+  - the format of line 0 should be:
+    a sequence of integers or asterisks, with two spaces between each element
+
+  % java Minesweeper 8 4 32
+
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 4
+
+    Minesweeper.main(Minesweeper.java:18)
+    UtilCOS.execute(UtilCOS.java:89)
+    TestMinesweeper.checkFormatting(TestMinesweeper.java:46)
+    TestMinesweeper.test1(TestMinesweeper.java:475)
+    TestMinesweeper.main(TestMinesweeper.java:610)
+
+  - student solution threw an exception
+  - reference solution did not throw an exception
+
+  % java Minesweeper 1 20 10
+
+
+WARNING: the time limit of 60 seconds was exceeded, so not all tests could be completed.
+
+
+
+Total: 0/11 tests passed: Could not complete tests, which results in a reported score of 0.
+================================================================
